@@ -1,6 +1,7 @@
 import 'package:crypto_currrencies/contant/themes.dart';
 import 'package:crypto_currrencies/model/localstorage.dart';
 import 'package:crypto_currrencies/pages/homepage.dart';
+import 'package:crypto_currrencies/provider/ad_provider.dart';
 import 'package:crypto_currrencies/provider/market_provider.dart';
 import 'package:crypto_currrencies/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,8 @@ final String theme;
     return MultiProvider(
         providers: [
           ChangeNotifierProvider<MarketProvider>(create: (context) => MarketProvider(),),
-          ChangeNotifierProvider<ThemeProvider>(create: (context) => ThemeProvider(theme),)
+          ChangeNotifierProvider<ThemeProvider>(create: (context) => ThemeProvider(theme),),
+          ChangeNotifierProvider<AdProvider>(create: (context) => AdProvider(),)
         ],
       child: Consumer<ThemeProvider>(
         builder: (context, value, child) {

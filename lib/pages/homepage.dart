@@ -1,9 +1,11 @@
 import 'package:crypto_currrencies/model/crptocurrency.dart';
 import 'package:crypto_currrencies/pages/details.dart';
 import 'package:crypto_currrencies/pages/morkets.dart';
+import 'package:crypto_currrencies/provider/ad_provider.dart';
 import 'package:crypto_currrencies/provider/market_provider.dart';
 import 'package:crypto_currrencies/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:provider/provider.dart';
 
 import 'favorite.dart';
@@ -17,12 +19,19 @@ class Homepage extends StatefulWidget {
 
 class _HomepageState extends State<Homepage> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    Provider.of<AdProvider>(context,listen: false).homepagebanner;
+  }
+
+  @override
   Widget build(BuildContext context) {
+
     ThemeProvider themeProvider=Provider.of<ThemeProvider>(context,listen: false);
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-
         body: SafeArea(
           child: Container(
             padding: EdgeInsets.only(top: 20,left: 20,right: 20,bottom: 0),
@@ -66,6 +75,19 @@ class _HomepageState extends State<Homepage> {
               ],
             ),
           ),
+        ),
+        bottomNavigationBar: Consumer<AdProvider>(
+          builder: (context, value, child) {
+            if(value.ishomepagebanner){
+              return Container(
+                height: value.homepagebanner.size.height.toDouble(),
+                child: AdWidget(ad: value.homepagebanner),
+              );
+            }
+            else{
+              return Container(height: 0,);
+            }
+          },
         ),
       ),
     );
