@@ -9,6 +9,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:provider/provider.dart';
 void main() async{
   WidgetsFlutterBinding.ensureInitialized();
+  //MobileAds.instance.initialize();
 String currenttheme=await LocalStorage.gettheme() ?? "light";
   runApp(MyApp(
     theme: currenttheme,
@@ -24,7 +25,7 @@ final String theme;
         providers: [
           ChangeNotifierProvider<MarketProvider>(create: (context) => MarketProvider(),),
           ChangeNotifierProvider<ThemeProvider>(create: (context) => ThemeProvider(theme),),
-          ChangeNotifierProvider<AdProvider>(create: (context) => AdProvider(),)
+        //  ChangeNotifierProvider<AdProvider>(create: (context) => AdProvider(),)
         ],
       child: Consumer<ThemeProvider>(
         builder: (context, value, child) {

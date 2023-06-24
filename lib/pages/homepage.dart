@@ -5,7 +5,7 @@ import 'package:crypto_currrencies/provider/ad_provider.dart';
 import 'package:crypto_currrencies/provider/market_provider.dart';
 import 'package:crypto_currrencies/provider/theme_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:google_mobile_ads/google_mobile_ads.dart';
+
 import 'package:provider/provider.dart';
 
 import 'favorite.dart';
@@ -22,7 +22,7 @@ class _HomepageState extends State<Homepage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    Provider.of<AdProvider>(context,listen: false).homepagebanner;
+  //  Provider.of<AdProvider>(context,listen: false).homepagebanner;
   }
 
   @override
@@ -76,19 +76,19 @@ class _HomepageState extends State<Homepage> {
             ),
           ),
         ),
-        bottomNavigationBar: Consumer<AdProvider>(
-          builder: (context, value, child) {
-            if(value.ishomepagebanner){
-              return Container(
-                height: value.homepagebanner.size.height.toDouble(),
-                child: AdWidget(ad: value.homepagebanner),
-              );
-            }
-            else{
-              return Container(height: 0,);
-            }
-          },
-        ),
+        // bottomNavigationBar: Consumer<AdProvider>(
+        //   builder: (context, value, child) {
+        //     if(value.ishomepagebanner){
+        //       return Container(
+        //         height: value.homepagebanner.size.height.toDouble(),
+        //         child: AdWidget(ad: value.homepagebanner),
+        //       );
+        //     }
+        //     else{
+        //       return Container(height: 0,);
+        //     }
+        //   },
+        // ),
       ),
     );
   }
